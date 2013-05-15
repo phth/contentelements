@@ -1,0 +1,45 @@
+{namespace fed=Tx_Fed_ViewHelpers}
+{namespace flux=Tx_Flux_ViewHelpers}
+{namespace ce=Tx_Contentelements_ViewHelpers}
+
+<f:layout name="FCE" />
+
+<f:section name="Configuration">
+	<flux:flexform wizardTab="Spezieller Seiteninhalt" id="accordion" label="Akkordeon" description="Inhalts-Akkordeon für beliebig viele Texte" enabled="TRUE">
+		<flux:flexform.sheet name="content" label="Inhalt">
+            <flux:flexform.section name="elements" label="Akkordeon-Elemente">
+				<flux:flexform.object name="element" label="Akkordeon-Element">
+					<flux:flexform.field.input name="headline" label="Überschrift" />
+					<flux:flexform.field.text name="text" label="Text" default="" defaultExtras="richtext:rte_transform[flag=rte_enabled|mode=ts_css]" />
+                </flux:flexform.object>
+			</flux:flexform.section>
+		</flux:flexform.sheet>
+	</flux:flexform>
+</f:section>
+
+<f:section name="Preview">
+	<ol>
+        <f:for each="{elements}" as="elementSectionObject">
+        	<f:for each="{elementSectionObject}" as="object" key="objectType">
+	            <li>
+	                <em>{object.headline}</em>
+	            </li>
+            </f:for>
+		</f:for>
+	</ol>
+</f:section>
+
+<f:section name="Main">
+	<ul class="accordion">
+		<f:for each="{elements}" as="elementSectionObject" iteration="accordionIteration">
+        	<f:for each="{elementSectionObject}" as="object" key="objectType" >
+        		<li>
+        			<h3>{object.headline}</h3>
+        			<div class="panel">
+        				<f:format.html>{object.text}</f:format.html>
+        			</div>
+        		</li>
+        	</f:for>
+        </f:for>
+	</ul>
+</f:section>

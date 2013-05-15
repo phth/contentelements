@@ -1,0 +1,36 @@
+{namespace fed=Tx_Fed_ViewHelpers}
+{namespace flux=Tx_Flux_ViewHelpers}
+{namespace ce=Tx_Contentelements_ViewHelpers}
+
+<f:layout name="FCE" />
+
+<f:section name="Configuration">
+	<flux:flexform wizardTab="Spezieller Seiteninhalt" id="teaser" label="Teaser" description="Teaser-Element mit optionalem Link und Bild" icon="../typo3conf/ext/contentelements/Resources/Public/Icons/icon-teaser.png" enabled="TRUE">
+		<flux:flexform.field.input name="subtitle" label="Untertitel" />
+		<flux:flexform.field.input name="text" label="Text" default="" size="120" maxCharacters="90" />
+        <flux:flexform.field.input name="target" label="Link">
+			<flux:flexform.field.wizard.link />
+		</flux:flexform.field.input>
+        <ce:flexform.field.fal name="image" label="Bild" default="" required="0" />
+	</flux:flexform>
+</f:section>
+
+<f:section name="Preview">
+	{text} 
+</f:section>
+
+<f:section name="Main">
+	<div class="genericTeaser {f:if(condition:'{image} > 0', then: 'withImage')}">
+		<h3><ce:header /></h3>
+		<div class="subtitle">{subtitle}</div>
+		<hr class="shadow"/>
+		<f:if condition="{image} > 0">
+        	<ce:fal src="{image}" width="100" height="100" />
+       	</f:if>
+       	<div class="text">
+	   		<f:format.html>{text}</f:format.html>	        
+        </div>
+        <ce:typolink parameter="{target}" ATagParams="class='more'"></ce:typolink>
+        <div class="clear"></div>
+	</div>
+</f:section>

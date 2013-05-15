@@ -1,0 +1,75 @@
+{namespace fed=Tx_Fed_ViewHelpers}
+{namespace flux=Tx_Flux_ViewHelpers}
+{namespace ce=Tx_Contentelements_ViewHelpers}
+
+<f:layout name="FCE" />
+
+<f:section name="Configuration">
+	<flux:flexform wizardTab="Spezieller Seiteninhalt" id="slider" label="Slider" description="Slider" enabled="TRUE">
+		<flux:flexform.sheet name="content" label="Inhalt">
+            <flux:flexform.section name="elements" label="Slider-Elemente">
+				<flux:flexform.object name="element" label="Slider-Element">
+					<flux:flexform.field.text name="text" label="Text" default="" />
+					<flux:flexform.field.input name="subtitle" label="Untertitel" />
+			        <flux:flexform.field.file name="image" label="Bild" internalType="file_reference" allowed="gif,jpg,jpeg,png" />
+			        <flux:flexform.field.input name="target" label="Link">
+						<flux:flexform.field.wizard.link />
+					</flux:flexform.field.input>
+                </flux:flexform.object>
+			</flux:flexform.section>
+		</flux:flexform.sheet>
+		<flux:flexform.sheet name="disrupter" label="Störer">
+			<flux:flexform.field.file name="image" label="Bild" internalType="file_reference" allowed="gif,jpg,jpeg,png" />
+			<flux:flexform.field.input name="target" label="Link">
+				<flux:flexform.field.wizard.link />
+			</flux:flexform.field.input>
+		</flux:flexform.sheet>
+	</flux:flexform>
+</f:section>
+
+<f:section name="Preview">
+	<ol>
+        <f:for each="{elements}" as="elementSectionObject">
+        	<f:for each="{elementSectionObject}" as="object" key="objectType">
+	            <li>
+	                <em>{object.text}</em>
+	            </li>
+            </f:for>
+		</f:for>
+	</ol>
+	<hr />
+	Einstellungen: 
+	<ul>
+		<li>
+			Bildwechsel nach {speed}ms
+		</li>
+	</ul>
+</f:section>
+
+<f:section name="Main">
+	<div id="SliderContainer">
+		<div id="Slider">
+			<f:for each="{elements}" as="elementSectionObject" iteration="sliderIteration">
+	        	<f:for each="{elementSectionObject}" as="object" key="objectType" >
+	        		<f:if condition="{object.image} > 0">
+	        			<f:if condition="{sliderIteration.isFirst}">
+		        			<f:then>
+		        				<f:image src="{object.image}" alt="{object.text}" title="{object.subtitle}" width="635" height="320" id="SliderImage{sliderIteration.index}" />
+		        			</f:then>
+		        			<f:else>
+		        				<f:image src="{object.image}" alt="{object.text}" title="{object.subtitle}" width="635" height="320" id="SliderImage{sliderIteration.index}" class="hidden" />
+		        			</f:else>
+		        		</f:if>
+			        </f:if>
+	        	</f:for>
+	        </f:for>
+		</div>
+		<f:if condition="{image} > 0">
+			<div class="disrupter">
+				<ce:typolink parameter="{target}">
+					<f:image src="{image}" alt="" />
+				</ce:typolink>
+			</div>
+		</f:if>
+	</div>
+</f:section>

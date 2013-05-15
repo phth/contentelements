@@ -1,0 +1,63 @@
+{namespace fed=Tx_Fed_ViewHelpers}
+{namespace flux=Tx_Flux_ViewHelpers}
+{namespace ce=Tx_Contentelements_ViewHelpers}
+
+<f:layout name="FCE" />
+
+<f:section name="Configuration">
+	<flux:flexform wizardTab="Spezieller Seiteninhalt" id="sidebar" label="Sidebar" description="Sidebar mit konfigurierbarem Warenkorb und weiteren Service-Links" icon="../typo3conf/ext/contentelements/Resources/Public/Icons/icon-sidebar.png" enabled="TRUE">
+		<flux:flexform.field.checkbox name="showSearch" label="Suche anzeigen" default="1" />
+		<flux:flexform.field.checkbox name="showLoginLink" label="Login-Link anzeigen" default="1" />
+		<flux:flexform.field.checkbox name="showBasketLink" label="Warenkorb-Link anzeigen" default="1" />
+		<flux:flexform.field.checkbox name="showBasket" label="Warenkorb anzeigen" default="1" />
+		<flux:flexform.field.text name="basketSubText" label="Warenkorb-Anleitung" default="" defaultExtras="richtext:rte_transform[flag=rte_enabled|mode=ts_css]" />
+	</flux:flexform>
+</f:section>
+
+<f:section name="Preview">
+	Sidebar mit:
+	<ul>
+		<f:if condition="{showSearch}">
+			<li>Suche</li>
+		</f:if>
+		<f:if condition="{showLoginLink}">
+			<li>Login-Link</li>
+		</f:if>
+		<f:if condition="{showBasketLink}">
+			<li>Warenkorb-Link</li>
+		</f:if>
+		<f:if condition="{showBasket}">
+			<li>Warenkorb</li>
+		</f:if>
+	</ul>
+</f:section>
+
+<f:section name="Main">
+	<div class="sidebar customerActions">
+		<f:if condition="{showSearch}">
+			<div class="search">
+				<f:cObject typoscriptObjectPath="lib.sidebar.search" />
+			</div>
+		</f:if>
+		<div class="clear"></div>
+		<f:if condition="{showLoginLink}">
+			<div class="loginLink">
+				<f:cObject typoscriptObjectPath="lib.sidebar.loginLink" />
+			</div>
+		</f:if>
+		<f:if condition="{showBasketLink}">
+			<div class="basketLink">
+				<f:cObject typoscriptObjectPath="lib.sidebar.basketLink" />
+			</div>
+		</f:if>
+		<div class="clear"></div>
+		<f:if condition="{showBasketLink}">
+			<div class="basket">
+				<f:cObject typoscriptObjectPath="lib.sidebar.basket" />
+				<hr class="shadow" />
+				<f:format.html>{basketSubText}</f:format.html>
+			</div>
+		</f:if>
+		<div class="gradient"></div>
+	</div>
+</f:section>

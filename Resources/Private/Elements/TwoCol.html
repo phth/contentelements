@@ -1,0 +1,38 @@
+{namespace flux=Tx_Flux_ViewHelpers}
+<f:layout name="FCE" />
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:flux="http://fedext.net/ns/flux/ViewHelpers"
+     xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+
+<f:section name="Configuration">
+	<flux:flexform wizardTab="Spezieller Seiteninhalt" id="bootstrap-buttongroup" label="Zweispalter" description="Stellt einen Zweispalter zur Verfügung, in dem weitere Inhaltselemente platziert werden können" icon="../typo3conf/ext/contentelements/Resources/Public/Icons/icon-twocol.png">
+		<flux:flexform.grid>
+			<flux:flexform.grid.row>
+				<flux:flexform.grid.column>
+					<flux:flexform.content name="contentLeft" label="linke Spalte" />
+				</flux:flexform.grid.column>
+				<flux:flexform.grid.column>
+					<flux:flexform.content name="contentRight" label="rechte Spalte" />
+				</flux:flexform.grid.column>
+			</flux:flexform.grid.row>
+		</flux:flexform.grid>
+	</flux:flexform>
+</f:section>
+
+<f:section name="Preview">
+	<flux:widget.grid />
+</f:section>
+
+<f:section name="Main">
+	<div class="twoColContent">
+		<div class="leftCol">
+			<flux:flexform.renderContent area="contentLeft" />
+		</div>
+		<div class="rightCol">
+			<flux:flexform.renderContent area="contentRight" />
+		</div>
+		<div class="clear"></div>
+	</div>
+</f:section>
+
+</div>

@@ -1,0 +1,39 @@
+{namespace flux=Tx_Flux_ViewHelpers}
+<f:layout name="FCE" />
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:flux="http://fedext.net/ns/flux/ViewHelpers"
+     xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+
+<f:section name="Configuration">
+	<flux:flexform wizardTab="Spezieller Seiteninhalt" id="SidebarTeaser" label="Sidebar Teaser" description="Stellt einen Container für Teaser in der Sidebar zur Verfügung" >
+		<flux:flexform.field.checkbox name="important" label="Hervorgehoben" default="0" />
+		<flux:flexform.grid>
+			<flux:flexform.grid.row>
+				<flux:flexform.grid.column>
+					<flux:flexform.content name="content" label="Teaser-Container für die rechte Spalte" />
+				</flux:flexform.grid.column>
+			</flux:flexform.grid.row>
+		</flux:flexform.grid>
+	</flux:flexform>
+</f:section>
+
+<f:section name="Preview">
+	<flux:widget.grid />
+</f:section>
+
+<f:section name="Main">
+	<f:if condition="{important}">
+		<f:then>
+			<div class="sidebar important">
+				<flux:flexform.renderContent area="content" />
+			</div>
+		</f:then>
+		<f:else>
+			<div class="sidebar">
+				<flux:flexform.renderContent area="content" />
+			</div>
+		</f:else>
+	</f:if>
+</f:section>
+
+</div>

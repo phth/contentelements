@@ -1,0 +1,22 @@
+plugin.tx_contentelements {
+	view {
+		templateRootPath = {$plugin.tx_contentelements.view.templateRootPath}
+		partialRootPath = {$plugin.tx_contentelements.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_contentelements.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_contentelements.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+[GLOBAL]
+plugin.tx_fed.fce.contentelements {
+	label = Spezielle Elemente
+	templateRootPath = EXT:contentelements/Resources/Private/Elements/
+	partialRootPath = EXT:contentelements/Resources/Private/Partials/
+	layoutRootPath = EXT:contentelements/Resources/Private/Layouts/
+}

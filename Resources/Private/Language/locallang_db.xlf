@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-05-03T13:50:17Z" product-name="contentelements">
+		<header/>
+		<body>
+			<trans-unit id="tt_products.dimensions">
+				<source>Dimensions</source>
+			</trans-unit>
+			<trans-unit id="tt_products.approval">
+				<source>Approval</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
